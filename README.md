@@ -24,6 +24,21 @@ O coração do projeto. Demonstra que inteligência artificial não requer data 
 * **Feedback em Tempo Real:** Cada decisão consolidada no "melhor caminho" (política ótima) é transmitida de volta ao Python.
 * **Loop de Jogo:** Ao receber a flag de término (vitória ou derrota), limpa a memória e aguarda o próximo desafio.
 
+## 📂 Estrutura do Repositório
+
+O repositório está dividido em duas partes principais: **Host** (o computador que roda o jogo e gerencia a interface) e **Edge** (o Arduino que resolve o labirinto).
+
+*   **`Host/` (Python)**:
+    *   `main.py`: Ponto de entrada da aplicação, gerencia a interface gráfica e o loop principal do jogo.
+    *   `maze_generator.py`: Contém a lógica de geração do labirinto (ex: Recursive Backtracker) e validação (Busca em Largura - BFS).
+    *   `serial_comm.py`: Gerencia as *threads* de comunicação Serial (Tx e Rx) para interagir com o microcontrolador de forma assíncrona.
+    *   `requirements.txt`: Lista de dependências do projeto Python (como `pygame` e `pyserial`).
+*   **`Edge/` (Arduino / C++)**:
+    *   **`MazeSolver/`**: Diretório contendo o sketch do Arduino (requisito da Arduino IDE).
+        *   `MazeSolver.ino`: Arquivo principal do Arduino, gerencia o fluxo principal (`setup` e `loop`).
+        *   `maze_protocol.h` / `.cpp`: Lida com o recebimento do mapa via Serial, utilizando operações *bitwise* para compactar o labirinto, e envio das ações do agente.
+        *   `q_learning.h` / `.cpp`: Implementação local do algoritmo de Q-Learning (Equação de Bellman) estritamente adaptada para variáveis inteiras e mínimo uso de RAM (2KB limit).
+
 ## 🚀 Como Executar
 
 ### Pré-requisitos
