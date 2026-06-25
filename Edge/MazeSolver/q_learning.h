@@ -4,12 +4,12 @@
 #include <Arduino.h>
 #include "maze_protocol.h"
 
-#define REWARD_COLISION -20
+#define REWARD_COLISION -40
 #define REWARD_EXIT 120
-#define REWARD_STEP -3
+#define REWARD_STEP -1
 
 #define TRAINING_STEPS 150
-#define MAX_TRAINING_EPISODES 300
+#define MAX_TRAINING_EPISODES 350
 
 enum AgentActions {
     NORTH,
@@ -33,7 +33,7 @@ class QLearningAgent {
         uint16_t episodesTrained;
 
         int8_t epsilon;
-        int8_t gama = 15;
+        int8_t gama = 1;
         int8_t alpha = 1;
 
         bool isValidMove(int8_t x, int8_t y, int8_t action);

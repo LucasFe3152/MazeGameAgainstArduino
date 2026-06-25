@@ -38,7 +38,7 @@ void QLearningAgent::trainEpisodes(uint8_t n) {
 
             reward = getReward(currentX, currentY, currentAction);
 
-            int16_t targetQ = reward + (getMaxQ(agentX, agentY) * gama) / 16;
+            int16_t targetQ = reward + getMaxQ(agentX, agentY) * gama;
             int16_t currentQ = qTable[currentY][currentX][currentAction];
             int16_t newQ = currentQ + (targetQ - currentQ) / alpha;
             if (newQ > 120) newQ = 120;
