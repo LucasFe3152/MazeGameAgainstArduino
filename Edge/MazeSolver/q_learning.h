@@ -4,9 +4,9 @@
 #include <Arduino.h>
 #include "maze_protocol.h"
 
-#define REWARD_COLISION -10
-#define REWARD_EXIT 100
-#define REWARD_STEP -1
+#define REWARD_COLISION -20
+#define REWARD_EXIT 120
+#define REWARD_STEP -3
 
 #define TRAINING_STEPS 200
 #define MAX_TRAINING_EPISODES 500

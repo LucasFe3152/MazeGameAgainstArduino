@@ -14,8 +14,8 @@ void QLearningAgent::init() {
     agentY = 0;
     exitX = mazeSize-1;
     exitY = mazeSize-1;
-    epsilon = 50;
-    dumpRate = 10;
+    epsilon = 100;
+    dumpRate = 0;
     episodesTrained = 0;
     memset(qTable, 0, sizeof(qTable));
 }
@@ -44,11 +44,11 @@ void QLearningAgent::trainEpisodes(uint8_t n) {
                 break;
         }
 
-        epsilon -= dumpRate;
-        if (epsilon <= 10) {
-            dumpRate = 0;
-        }else {
-            dumpRate = 10;
+        if (epsilon > 10) {
+            epsilon = (epsilon * 98) / 100;
+            if (epsilon < 10) {
+                epsilon = 10;
+            }
         }
 
         episodesTrained++;

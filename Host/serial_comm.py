@@ -15,6 +15,7 @@ class SerialManager:
             self.serial_port = serial.Serial(port, baudrate, timeout=1)
             self.is_connected = True
             print(f"Connectado na porta {port} com {baudrate} baud.")
+            time.sleep(2) # Aguarda inicialização do Arduino após reset físico da porta serial
         except serial.SerialException as e:
             self.is_connected = False
             print(f"Erro ao conectar na porta {port}: {e}")
@@ -61,6 +62,7 @@ class SerialManager:
         while (time.time() - start_time) < self.timeout:
             if self.serial_port and self.serial_port.in_waiting > 0:
                 char = self.serial_port.read(1).decode('utf-8', errors='ignore')
+                print(char, end='', flush=True)
                 buffer += char
                 if ">" in buffer:
                     if "ACK" in buffer:
@@ -88,6 +90,7 @@ class SerialManager:
             try:
                 if self.serial_port.in_waiting > 0:
                     dados = self.serial_port.read(self.serial_port.in_waiting).decode('utf-8', errors='ignore')
+                    print(dados, end='', flush=True)
                     buffer += dados
                     
                     while "<" in buffer and ">" in buffer:
