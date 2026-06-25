@@ -1,7 +1,7 @@
 #include "maze_protocol.h"
 #include "q_learning.h"
 
-#define MAX_DELTA 2000
+#define MAX_DELTA 250
 #define TRAINING_EPISODES 5
 
 char currentMove;

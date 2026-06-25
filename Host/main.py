@@ -5,7 +5,7 @@ from serial_comm import SerialManager
 from interface import Interface
 
 # configurações
-TAMANHO_LABIRINTO = 5
+TAMANHO_LABIRINTO = 8
 PORTA_SERIAL = "/dev/ttyUSB0"  
 
 # Mascaras de parede correspondentes a interface

@@ -8,8 +8,8 @@
 #define REWARD_EXIT 120
 #define REWARD_STEP -3
 
-#define TRAINING_STEPS 200
-#define MAX_TRAINING_EPISODES 500
+#define TRAINING_STEPS 150
+#define MAX_TRAINING_EPISODES 300
 
 enum AgentActions {
     NORTH,
@@ -33,7 +33,7 @@ class QLearningAgent {
         uint16_t episodesTrained;
 
         int8_t epsilon;
-        int8_t gama = 3;
+        int8_t gama = 15;
         int8_t alpha = 1;
 
         bool isValidMove(int8_t x, int8_t y, int8_t action);
@@ -47,7 +47,7 @@ class QLearningAgent {
         QLearningAgent();
         void init();
         void trainEpisodes(uint8_t n);
-        void resetAgent();
+        void resetAgent(bool randomStart = false);
         int8_t chooseBestMove(int8_t x, int8_t y);
 
         void startSolving();

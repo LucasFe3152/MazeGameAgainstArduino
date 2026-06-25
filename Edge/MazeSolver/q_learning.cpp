@@ -22,7 +22,7 @@ void QLearningAgent::init() {
 
 void QLearningAgent::trainEpisodes(uint8_t n) {
     for (uint8_t episode=0; episode<n; episode++){
-        resetAgent();
+        resetAgent(true); // Treina com Exploring Starts (posição aleatória)
         for (int i = 0; i < TRAINING_STEPS; i++) {
             int8_t randNumber = random(0, 100);
 
@@ -38,7 +38,12 @@ void QLearningAgent::trainEpisodes(uint8_t n) {
 
             reward = getReward(currentX, currentY, currentAction);
 
-            qTable[currentY][currentX][currentAction] = qTable[currentY][currentX][currentAction] + (reward + (getMaxQ(agentX, agentY)*gama)/4 - qTable[currentY][currentX][currentAction])/(alpha);
+            int16_t targetQ = reward + (getMaxQ(agentX, agentY) * gama) / 16;
+            int16_t currentQ = qTable[currentY][currentX][currentAction];
+            int16_t newQ = currentQ + (targetQ - currentQ) / alpha;
+            if (newQ > 120) newQ = 120;
+            if (newQ < -120) newQ = -120;
+            qTable[currentY][currentX][currentAction] = newQ;
 
             if (agentX == exitX && agentY == exitY) 
                 break;
@@ -85,9 +90,16 @@ void QLearningAgent::sendMove(int8_t x, int8_t y) {
     Serial.println(">");
 }
 
-void QLearningAgent::resetAgent() {
-    agentX = 0;
-    agentY = 0;
+void QLearningAgent::resetAgent(bool randomStart) {
+    if (randomStart && mazeSize > 1) {
+        do {
+            agentX = random(0, mazeSize);
+            agentY = random(0, mazeSize);
+        } while (agentX == exitX && agentY == exitY);
+    } else {
+        agentX = 0;
+        agentY = 0;
+    }
 }
 
 bool QLearningAgent::isValidMove(int8_t currentX, int8_t currentY, int8_t action) {
