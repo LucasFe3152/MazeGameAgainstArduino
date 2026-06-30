@@ -1,4 +1,4 @@
-# 🕹️ 2Kb de RAM e um sonho
+# 2Kb de RAM e um sonho
 
 Bem-vindo ao **2Kb de RAM e um sonho**, um projeto de demonstração de Edge AI focado em eficiência e aprendizado por reforço, desenvolvido para a **DataWeek**. 
 
@@ -43,12 +43,12 @@ O repositório está dividido em duas partes principais: **Host** (o computador 
 
 ### Pré-requisitos
 * Python 3.x
-* Bibliotecas: `pygame` (ou `turtle`), `pyserial`
+* Bibliotecas: `pygame`, `pyserial`
 * Arduino IDE (para compilar e enviar o código C++)
 * Uma placa Arduino (Uno, Nano, ou qualquer uma com pelo menos 2KB de RAM)
 
 ### Instalação
 1. Clone este repositório:
    ```bash
-   git clone [https://github.com/seu-usuario/2kb-de-ram-e-um-sonho.git](https://github.com/seu-usuario/2kb-de-ram-e-um-sonho.git)
-   cd 2kb-de-ram-e-um-sonho
+   git clone [https://github.com/LucasFe3152/MazeGameAgainstArduino.git](https://github.com/LucasFe3152/MazeGameAgainstArduino.git)
+   cd MazeGameAgainstArduino
