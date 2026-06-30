@@ -11,7 +11,7 @@ O sistema é dividido em dois nós principais operando em paralelo e se comunica
 ### 1. O Computador (Python / Host)
 Responsável pela infraestrutura, geração do ambiente e interface com o usuário.
 * **Geração de Ambiente:** Cria labirintos aleatórios e garante, matematicamente, que são solúveis.
-* **Interface Gráfica (Pygame/Turtle):** Renderiza duas instâncias do labirinto simultaneamente (Jogador vs. Edge AI).
+* **Interface Gráfica (Pygame):** Renderiza duas instâncias do labirinto simultaneamente (Jogador vs. Edge AI).
 * **Comunicação Multithread:** * Uma *thread* dedicada ao envio assíncrono da topologia do labirinto para o Arduino.
   * Uma *thread* em escuta constante via PySerial para capturar e espelhar as decisões do algoritmo na tela.
 * **Juiz da Partida:** Monitora o progresso de ambos, declara o vencedor na GUI e sinaliza o fim do jogo via Serial.
